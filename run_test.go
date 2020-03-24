@@ -130,7 +130,7 @@ func TestFailsWithConcurrencyOptionError(t *testing.T) {
 	defer stderr.Close()
 
 	opt := Options{
-		Format:      "pretty",
+		Format:      "cucumber",
 		Paths:       []string{"features/load:6"},
 		Concurrency: 2,
 		Output:      ioutil.Discard,
@@ -145,7 +145,7 @@ func TestFailsWithConcurrencyOptionError(t *testing.T) {
 	require.NoError(t, err)
 
 	out := strings.TrimSpace(string(b))
-	assert.Equal(t, `format "pretty" does not support concurrent execution`, out)
+	assert.Equal(t, `format "cucumber" does not support concurrent execution`, out)
 }
 
 func TestFailsWithUnknownFormatterOptionError(t *testing.T) {
@@ -275,6 +275,7 @@ func TestFormatterConcurrencyRun(t *testing.T) {
 	formatters := []string{
 		"progress",
 		"junit",
+		"pretty",
 	}
 
 	featurePaths := []string{"formatter-tests/features"}
