@@ -68,6 +68,7 @@ func AvailableFormatters() map[string]string {
 // formatters needs to be registered with a
 // godog.Format function call
 type Formatter interface {
+	TestRunStarted()
 	Feature(*messages.GherkinDocument, string, []byte)
 	Pickle(*messages.Pickle)
 	Defined(*messages.Pickle, *messages.Pickle_PickleStep, *StepDefinition)
@@ -167,6 +168,8 @@ type basefmt struct {
 
 	lock *sync.Mutex
 }
+
+func (f *basefmt) TestRunStarted() {}
 
 func (f *basefmt) lastFeature() *feature {
 	return f.features[len(f.features)-1]

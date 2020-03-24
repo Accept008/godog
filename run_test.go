@@ -275,6 +275,7 @@ func TestFormatterConcurrencyRun(t *testing.T) {
 	formatters := []string{
 		"progress",
 		"junit",
+		"events",
 	}
 
 	featurePaths := []string{"formatter-tests/features"}
